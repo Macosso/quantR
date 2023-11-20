@@ -15,6 +15,7 @@ quantR <- R6Class("quantR",
                     start=NULL,
                     end=NULL,
                     data=NULL,
+                    return = NULL,
 
                     initialize = function(tokens, start, end=NULL, data = NULL){
                       self$tokens <- tokens
@@ -32,6 +33,14 @@ quantR <- R6Class("quantR",
                       }
 
                     },
+                    VaR = function(return.type = "log", interval = "d", alpha = 0.05,...){
+                      if(return.type == "log"){
+                        self$return = na.omit(diff(log(self$data)))
+                        VaRs = sapply(self$return, quantile, alpha)
+                        return(VaRs)
+                      }
+                      #work in progress ...
+                    },
                     print = function(...){
                       cat(paste("tokens: ",self$tokens, collapse = ", "), " \n")
                       cat("start date: ", self$start, " \n")
@@ -45,7 +54,10 @@ quantR <- R6Class("quantR",
 obj <- quantR$new(tokens = c("MSFT", "GOOG"), start = "2020-01-01",  end = "2022-01-01")
 print(obj)
 
+obj$VaR()
+
 head(obj$data)
 
+obj$print()
 
 
