@@ -1,10 +1,10 @@
-
-library(quantmod)
-library(xts)
-library(zoo)
+library(stats)
+# library(quantmod)
+# library(xts)
+# library(zoo)
 library(R6)
 
-quantR <- R6Class("quantR",
+quantR <- R6::R6Class("quantR",
                   public = list(
                     tokens=NULL,
                     start=NULL,
@@ -30,14 +30,6 @@ quantR <- R6Class("quantR",
                         self$data <- loadTokens(self$tokens, start = self$start,  end = self$end)
                       }
 
-                    },
-                    VaR = function(return.type = "log", interval = "d", alpha = 0.05,...){
-                      if(return.type == "log"){
-                        self$return = na.omit(diff(log(self$data)))
-                        VaRs = sapply(self$return, quantile, alpha)
-                        return(VaRs)
-                      }
-                      #work in progress ...
                     },
                     print = function(...){
                       cat(paste("tokens: ",self$tokens, collapse = ", "), " \n")
