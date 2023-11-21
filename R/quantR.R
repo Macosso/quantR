@@ -6,6 +6,8 @@ library(R6)
 
 loadTokens <- function(tokens, start, end){
   dt = lapply(tokens, function(x) quantmod::getSymbols(x, auto.assign = F, from = start, to = end)[,6])
+  dt <- Reduce(merge, dt)
+  colnames(dt) <- tokens
   return(dt)
 }
 
@@ -28,8 +30,6 @@ quantR <- R6Class("quantR",
                       #if no data was provided, load using quantmod
                       else{
                         self$data <- loadTokens(self$tokens, start = self$start,  end = self$end)
-                        self$data <- Reduce(merge, self$data)
-                        colnames(self$data) <- self$tokens
                       }
 
                     },
@@ -50,14 +50,4 @@ quantR <- R6Class("quantR",
                   )
 
   )
-
-obj <- quantR$new(tokens = c("MSFT", "GOOG"), start = "2020-01-01",  end = "2022-01-01")
-print(obj)
-
-obj$VaR()
-
-head(obj$data)
-
-obj$print()
-
 
