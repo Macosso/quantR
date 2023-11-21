@@ -4,13 +4,6 @@ library(xts)
 library(zoo)
 library(R6)
 
-loadTokens <- function(tokens, start, end){
-  dt = lapply(tokens, function(x) quantmod::getSymbols(x, auto.assign = F, from = start, to = end)[,6])
-  dt <- Reduce(merge, dt)
-  colnames(dt) <- tokens
-  return(dt)
-}
-
 quantR <- R6Class("quantR",
                   public = list(
                     tokens=NULL,
@@ -22,7 +15,12 @@ quantR <- R6Class("quantR",
                     initialize = function(tokens, start, end=NULL, data = NULL){
                       self$tokens <- tokens
                       self$start <- start
-                      self$end <- end
+                      if(!is.null(end)) {
+                        self$end <- end
+                      }
+                      else{
+                        self$end <- Sys.Date()
+                      }
 
                       if(!is.null(data)){
                         self$data <- data[,tokens]
@@ -50,4 +48,3 @@ quantR <- R6Class("quantR",
                   )
 
   )
-
