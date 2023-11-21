@@ -17,8 +17,7 @@ normalize(x)
 \examples{
 
 \dontrun{
-normalize()
-}
+normalize(x)
 }
 }
 \author{Joao Claudio Macosso}
