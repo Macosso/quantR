@@ -1,16 +1,10 @@
+library(quantmod)
+library(xts)
+library(zoo)
+library(R6)
+library(stats)
 
-#' Import trading data from yahoo finance
-#'
-#' @param tokens A vector of trading tokens to import
-#' @param start The start date of the data series
-#' @param end The end date of data series
-#' @param variable The variable to be selected from ```adjusted.price, volume, close.price, low.price, high.price, open.price```, default: ```adjusted.price```
-#'
-#' @return An xts object
 #' @export
-#'
-#' @examples tradingData <- loadTokens(c("MSFT", "GOOG", "GM"), start = "2020-01-01")
-
 loadTokens <- function(tokens, start, end=NULL, variable = "adjusted.price"){
 
   if(is.null(end)) end <- Sys.Date()
