@@ -16,7 +16,7 @@ VaR(data, return.type = "log", interval = "d", alpha = 0.05, dist = "quantile")
 \item{return.type}{how should returns be transformed}
 \item{interval}{data frequency, ```c(daily, monthly, quarterly, yearly)```}
 \item{alpha}{confidence level}
-\item{dist}{}
+\item{dist}{distribution}
 }
 
 \value{named matrix}
