@@ -1,8 +1,8 @@
-library(quantmod)
-library(xts)
-library(zoo)
-library(R6)
-library(stats)
+# library(quantmod)
+# library(xts)
+# library(zoo)
+# library(R6)
+# library(stats)
 
 #' @export
 loadTokens <- function(tokens, start, end=NULL, variable = "adjusted.price"){
