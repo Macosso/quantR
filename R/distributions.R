@@ -1,10 +1,7 @@
-# library(quantmod)
-# library(xts)
-# library(zoo)
-# library(R6)
-# library(stats)
-# require(stats)
-
+#' @importFrom xts xts
+#' @importFrom zoo index
+#' @importFrom zoo as.Date
+#'
 #' @export
 normalize <- function(x){
   miu <- apply(x, 2, mean, na.rm = T)
@@ -16,6 +13,10 @@ normalize <- function(x){
   return(normal_dist)
 }
 
+#' @importFrom xts xts
+#' @importFrom zoo index
+#' @importFrom zoo as.Date
+#'
 #' @export
 studentize <- function(x){
 
