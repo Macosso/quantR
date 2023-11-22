@@ -33,5 +33,5 @@ jarqueBera(c(1, 2, NA, 4, 5), na.rm = TRUE)
 
 }
 \seealso{
-\code{\link{skewnes}}, \code{\link{kurtosis}}
+\code{\link{skewness}}, \code{\link{kurtosis}}
 }
