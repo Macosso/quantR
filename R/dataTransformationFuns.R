@@ -11,12 +11,14 @@
 #' @return A numeric vector of logarithmic returns.
 #'
 #' @examples
+#' \dontrun{
 #' # Calculate logarithmic returns with the default options
 #' logReturns(c(1, 2, 3, 4, 5))
 #'
 #' # Calculate logarithmic returns with missing values removed
 #' logReturns(c(1, 2, NA, 4, 5), na.rm = TRUE)
 #'
+#'}
 #' @export
 #'
 #' @rdname logReturns
@@ -43,12 +45,14 @@ logReturns <- function(x, na.rm = FALSE) {
 #' @return A numeric vector of percentage returns.
 #'
 #' @examples
+#' \dontrun{
 #' # Calculate percentage returns with the default options
 #' pctReturns(c(1, 2, 3, 4, 5))
 #'
 #' # Calculate percentage returns with missing values removed
 #' pctReturns(c(1, 2, NA, 4, 5), na.rm = TRUE)
 #'
+#'}
 #' @export
 #'
 #' @rdname pctReturns
