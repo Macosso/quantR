@@ -1,9 +1,5 @@
-# library(quantmod)
-# library(xts)
-# library(zoo)
-# library(R6)
-# library(stats)
-
+#' @importFrom quantmod getSymbols
+#'
 #' @export
 loadTokens <- function(tokens, start, end=NULL, variable = "adjusted.price"){
 
