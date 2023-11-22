@@ -21,8 +21,10 @@ VaR(data, return.type = "log", interval = "d", alpha = 0.05, dist = "quantile")
 
 \value{named matrix}
 \examples{
+\dontrun{
 quantrDate <- loadTokens(c("MSFT", "GOOG", "GM"), start = "2020-01-01")
 VaR(quantrDate, return.type = "log")
+}
 }
 \author{Joao Claudio Macosso}
 
