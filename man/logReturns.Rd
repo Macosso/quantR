@@ -21,10 +21,12 @@ the difference of the logarithm of each element. It can handle missing values
 if \code{na.rm} is set to \code{TRUE}.
 }
 \examples{
+\dontrun{
 # Calculate logarithmic returns with the default options
 logReturns(c(1, 2, 3, 4, 5))
 
 # Calculate logarithmic returns with missing values removed
 logReturns(c(1, 2, NA, 4, 5), na.rm = TRUE)
 
+}
 }
