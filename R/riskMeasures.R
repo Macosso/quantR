@@ -1,28 +1,31 @@
-library(quantmod)
-library(xts)
-library(zoo)
-library(R6)
-library(stats)
+# library(quantmod)
+# library(xts)
+# library(zoo)
+# library(R6)
+# library(stats)
 
 #' @export
-VaR <- function(data, return.type = "log", interval = "d", alpha = 0.05, dist = "quantile"){
-  if(return.type == "log"){
-    return = stats::na.omit(diff(log(data)))
-  }
+VaR <- function(returns, alpha = 0.05, dist = "quantile"){
+  returns = stats::na.omit(returns)
 
-  miu <- sapply(return, mean)
-  sigma <- sapply(return, stats::sd)
+  miu <- sapply(returns, mean)
+  sigma <- sapply(returns, stats::sd)
 
-  n = length(return[,1])
+  n = length(returns[,1])
 
-  if(dist=="quantile") VaRs <- sapply(return, stats::quantile, alpha)
+  if(dist=="quantile") VaRs <- sapply(returns, stats::quantile, alpha)
   else if(dist=="normal"){
-    dist <- normalize(return)
-    VaRs <- sapply(dist, stats::quantile, alpha)
+    VaRs <-  miu + qnorm(alpha)*sigma
   }
 
   return(VaRs)
 }
 
 
+CVaR <- function(returns, alpha = 0.05, dist = "quantile"){
+  vars <- quantR::VaR(returns, alpha = alpha, dist = dist)
+  Xs <- as.list(as.data.frame(returns))
+  cvars <- mapply(function(x,y) mean(x[x<=y], na.rm = T), Xs, vars )
+  return(cvars)
+}
 
