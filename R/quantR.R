@@ -4,7 +4,9 @@
 # library(zoo)
 # library(R6)
 
-#' @exportClass()
+#' @importFrom R6 R6Class
+#'
+#' @export
 quantR <- R6::R6Class("quantR",
                   public = list(
                     tokens=NULL,
