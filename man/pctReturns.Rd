@@ -22,10 +22,12 @@ lagged value. It can handle missing values if \code{na.rm} is set to
 \code{TRUE}.
 }
 \examples{
+\dontrun{
 # Calculate percentage returns with the default options
 pctReturns(c(1, 2, 3, 4, 5))
 
 # Calculate percentage returns with missing values removed
 pctReturns(c(1, 2, NA, 4, 5), na.rm = TRUE)
 
+}
 }
