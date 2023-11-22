@@ -1,9 +1,9 @@
-library(quantmod)
-library(xts)
-library(zoo)
-library(R6)
-library(stats)
-require(stats)
+# library(quantmod)
+# library(xts)
+# library(zoo)
+# library(R6)
+# library(stats)
+# require(stats)
 
 #' @export
 normalize <- function(x){
