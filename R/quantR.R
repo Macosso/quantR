@@ -1,9 +1,10 @@
-library(stats)
+# library(stats)
 # library(quantmod)
 # library(xts)
 # library(zoo)
-library(R6)
+# library(R6)
 
+#' @exportClass()
 quantR <- R6::R6Class("quantR",
                   public = list(
                     tokens=NULL,
