@@ -1,4 +1,3 @@
-
 #' Calculate skewness of a numeric vector.
 #'
 #' This function computes the skewness of a numeric vector using the specified
@@ -26,7 +25,7 @@
 #'
 #' @export
 #'
-#' @rdname skewnes
+#' @rdname skewness
 skewness <- function(x, na.rm = FALSE, sample.type = "biased") {
   # Calculate the mean of the input vector
   if(na.rm) x = stats::na.omit(x)
@@ -125,7 +124,7 @@ kurtosis <- function(x, na.rm = FALSE, sample.type = "biased") {
 #' # Perform Jarque-Bera test with missing values removed
 #' jarqueBera(c(1, 2, NA, 4, 5), na.rm = TRUE)
 #'
-#' @seealso \code{\link{skewnes}}, \code{\link{kurtosis}}
+#' @seealso \code{\link{skewness}}, \code{\link{kurtosis}}
 #'
 #' @export
 #'
@@ -136,14 +135,14 @@ jarqueBera <- function(x, na.rm = FALSE) {
 
   # Calculate sample size, skewness, and kurtosis
   n <- length(x)
-  S <- quantR::skewnes(x)
+  S <- quantR::skewness(x)
   K <- quantR::kurtosis(x)
 
   # Calculate Jarque-Bera test statistic
   JB <- (n / 6) * (S^2 + (1 / 4) * (K - 3)^2)
 
   # Calculate p-value using chi-squared distribution
-  p_value <- 1 - pchisq(JB, df = 2)
+  p_value <- 1 - stats::pchisq(JB, df = 2)
 
   # Return a list with the Jarque-Bera test statistic and p-value
   return(list(statistic = JB, p.value = p_value))
