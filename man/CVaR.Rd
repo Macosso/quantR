@@ -29,8 +29,9 @@ levels and distribution assumptions.
 \dontrun{
 library(xts)
 # Assuming xts objects
-returns_xts <- xts(matrix(c(0.01, -0.02, 0.03, -0.01, 0.02, -0.03), ncol = 2),
-                   order.by = as.Date(1:6))
+returns_xts <- xts(matrix(c(0.01, 0.03, -0.01, 0.04, -0.06, -0.02, 0.03,
+ -0.01, 0.02, -0.03, 0.03, -0.006, 0.02, -0.03), ncol = 2),
+ order.by = as.Date(1:7))
 
 # Calculate quantile-based CVaR
 CVaR(returns_xts, alpha = 0.05, dist = "quantile")
