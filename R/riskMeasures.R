@@ -42,7 +42,7 @@ VaR <- function(returns, alpha = 0.05, dist = "quantile") {
   if (dist == "quantile") {
     VaRs <- sapply(returns, stats::quantile, alpha)
   } else if (dist == "normal") {
-    VaRs <- miu + stats::qnorm(alpha) * sigma
+    VaRs <- sapply(miu, function(x, y, z) x+ stats::qnorm(y)*z, alpha, sigma) #miu + stats::qnorm(alpha) * sigma
   }
 
   return(VaRs)
@@ -83,6 +83,7 @@ VaR <- function(returns, alpha = 0.05, dist = "quantile") {
 #'
 #' @rdname CVaR
 CVaR <- function(returns, alpha = 0.05, dist = "quantile") {
+  #work in progress, find a way for mulptiple alphas
   vars <- quantR::VaR(returns, alpha = alpha, dist = dist)
   Xs <- as.list(as.data.frame(returns))
   cvars <- mapply(function(x, y) mean(x[x <= y], na.rm = TRUE), Xs, vars)
